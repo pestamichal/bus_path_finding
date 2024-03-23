@@ -1,7 +1,9 @@
 import csv
-from graph import Graph
 import pickle
 
+from algorithms import *
+from graph import Graph
+from my_time import BusTime
 
 file_path = 'connection_graph.csv'
 graph = Graph()
@@ -25,14 +27,18 @@ def create_graph_from_a_file():
 
 def restore_graph():
     with open('graph_instance.pkl', 'rb') as f:
-        graph = pickle.load(f)
-    graph.print_graph()
+        return pickle.load(f)
+    # graph.print_nodes()
     # print(graph.get_neighbors('Miękinia - Urząd Gminy (51.19386776, 16.73806496)'))
     # print(graph.get_fastest_connection('Miękinia - Urząd Gminy (51.19386776, 16.73806496)', 'Klęka (51.20861669, 16.7499646)', '12:00:00'))
 
 
 if __name__ == '__main__':
-    # create_graph_from_a_file()
-    restore_graph()
+    #create_graph_from_a_file()
+
+    graph = restore_graph()
+    time = BusTime(time_str='14:38:00')
+    dijkstra_time(graph, 'Iwiny - rondo (51.04509727, 17.06086879)', 'Hala Stulecia (51.10742782, 17.07267446)', time)
+
 
 

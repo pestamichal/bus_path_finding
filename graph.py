@@ -1,11 +1,13 @@
 import matplotlib.pyplot as plt
+from my_time import BusTime
+
+
 class Edge:
     def __init__(self, end_stop_name, line, departure, arrival):
         self.end_stop_name = end_stop_name
         self.line = line
-        self.departure = departure
-        self.arrival = arrival
-
+        self.departure = BusTime(departure)
+        self.arrival = BusTime(arrival)
 
     def __str__(self):
         return f' --> {self.end_stop_name} by {self.line}, dep: {self.departure} arr: {self.arrival}'
@@ -45,6 +47,12 @@ class Graph:
             print(f'Node: {node}')
             for edge in self.graph[node]:
                 print(edge)
+    def print_nodes(self):
+        for node in self.nodes:
+            print(node)
+
+    def get_random_node(self):
+        pass
 
     def plot_nodes(self):
         x_vals = []

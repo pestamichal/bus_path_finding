@@ -1,5 +1,0 @@
-
-
-def dijkstra_time(graph, start, goal, start_time):
-    visited_nodes = {(start, start_time)}
-    pass
