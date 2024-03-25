@@ -27,8 +27,15 @@ class Graph:
     def add_edge(self, start_stop_name, end_stop_name, line, departure, arrival):
         if start_stop_name in self.graph and end_stop_name in self.graph:
             edge = Edge(end_stop_name, line, departure, arrival)
-            if edge not in self.graph[start_stop_name]:
-                self.graph[start_stop_name].append(edge)
+            # if edge not in self.graph[start_stop_name]:
+            self.graph[start_stop_name].append(edge)
+
+    def get_connections_after_time(self, stop, time):
+        result = []
+        for edge in self.graph[stop]:
+            if edge.departure >= time:
+                result.append(edge)
+        return sorted(result, key=lambda x: x.arrival)
 
     def get_neighbors(self, stop):
         result = set()
@@ -41,7 +48,10 @@ class Graph:
         for edge in self.graph[start_stop]:
             if edge.departure >= time and edge.end_stop_name == end_stop:
                 result.append(edge)
+        if len(result) == 0:
+            return None
         return sorted(result, key=lambda x: x.arrival)[0]
+
     def print_graph(self):
         for node in self.graph:
             print(f'Node: {node}')

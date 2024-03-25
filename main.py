@@ -34,11 +34,15 @@ def restore_graph():
 
 
 if __name__ == '__main__':
-    #create_graph_from_a_file()
+    # create_graph_from_a_file()
 
     graph = restore_graph()
-    time = BusTime(time_str='14:38:00')
-    dijkstra_time(graph, 'Iwiny - rondo (51.04509727, 17.06086879)', 'Hala Stulecia (51.10742782, 17.07267446)', time)
-
+    print(len(graph.graph))
+    time = BusTime(time_str='12:22:00')
+    # result = graph.get_connections_after_time('Babimojska (51.114068, 16.977603)', time)
+    # for edge in result:
+    #     print(edge)
+    dijkstra_time(graph, 'Wyszyńskiego (51.12232447, 17.05196291)', 'Jedności Narodowej (51.12102, 17.04326)', time)
+    # astar_time(graph, 'Babimojska (51.114068, 16.977603)', 'Biegasa (51.099809, 17.086666)', time)
 
 

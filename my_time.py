@@ -34,7 +34,19 @@ class BusTime:
         else:
             raise TypeError("Unsupported operand type(s) for +: 'BusTime' and '{}'".format(type(other)))
 
+    def __le__(self, other):
+        if isinstance(other, BusTime):
+            return self < other or self == other
+        else:
+            raise TypeError("Unsupported operand type(s) for +: 'BusTime' and '{}'".format(type(other)))
+
     def __ge__(self, other):
+        if isinstance(other, BusTime):
+            return self > other or self == other
+        else:
+            raise TypeError("Unsupported operand type(s) for +: 'BusTime' and '{}'".format(type(other)))
+
+    def __gt__(self, other):
         if isinstance(other, BusTime):
             if self.hour > other.hour:
                 return True
@@ -42,7 +54,7 @@ class BusTime:
                 if self.minute > other.minute:
                     return True
                 elif self.minute == other.minute:
-                    return self.second >= other.second
+                    return self.second > other.second
         else:
             raise TypeError("Unsupported operand type(s) for +: 'BusTime' and '{}'".format(type(other)))
 
@@ -58,11 +70,6 @@ class BusTime:
         else:
             raise TypeError("Unsupported operand type(s) for +: 'BusTime' and '{}'".format(type(other)))
 
-    def __le__(self, other):
-        if isinstance(other, BusTime):
-            return self > other or self == other
-        else:
-            raise TypeError("Unsupported operand type(s) for +: 'BusTime' and '{}'".format(type(other)))
 
     def __eq__(self, other):
         if isinstance(other, BusTime):
@@ -74,4 +81,4 @@ class BusTime:
         return self.hour * 60 * 60 + self.minute * 60 + self.second
 
     def __str__(self):
-        return f'{self.hour}:{self.minute}:{self.second}'
+        return f'{self.hour:02d}:{self.minute:02d}:{self.second:02d}'
